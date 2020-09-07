@@ -1,26 +1,20 @@
 
 <h1>《后端架构师技术图谱》</h1>
 
-![阿里巴巴集团长期内推，欢迎自荐，xingshaocheng@gmail.com](https://cdns.coderxing.com/HrUJ4G3E.png_700x700)
+:thumbsup: :thumbsup: :thumbsup:  推荐一个在线搜课程的神器，“[课程搜](https://www.kcsou.com)”：[https://www.kcsou.com/s_架构师/](https://www.kcsou.com/s_%E6%9E%B6%E6%9E%84%E5%B8%88/)
 
-<hr/>
+-----------
 
-<h1>阿里巴巴-大文娱事业部-2019年实习生招聘-欢迎转发图片:</h1>
 
-![阿里巴巴2019年实习生招聘欢迎转发](2019校园招聘海报-大文娱2019实习生&2020应届生.png)
-
-<h1>阿里巴巴-集团-2019年实习生招聘-欢迎转发图片（注意，和上面的不一样）:</h1>
-
-![阿里巴巴2019年实习生招聘欢迎转发](2019校园招聘海报-集团2019实习生&2020应届生.png)
-
+<b style="color:red">推荐:</b> [《Java技术书籍大全》 - awesome-java-books](https://github.com/sorenduan/awesome-java-books)
+<p>从初级开发者到资深架构师，看这些书就够了</p>
 <hr/>
 
 [![知识共享协议（CC协议）](https://img.shields.io/badge/License-Creative%20Commons-DC3D24.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)
 [![GitHub stars](https://img.shields.io/github/stars/xingshaocheng/architect-awesome.svg?style=flat&label=Star)](https://github.com/xingshaocheng/architect-awesome/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/xingshaocheng/architect-awesome.svg?style=flat&label=Fork)](https://github.com/xingshaocheng/architect-awesome/fork)
 [![GitHub watchers](https://img.shields.io/github/watchers/xingshaocheng/architect-awesome.svg?style=flat&label=Watch)](https://github.com/xingshaocheng/architect-awesome/watchers)
-
-
+[![GitHub followers](https://img.shields.io/github/followers/xingshaocheng.svg?label=%E5%85%B3%E6%B3%A8)](https://github.com/xingshaocheng)
 
 
 * [数据结构](https://github.com/xingshaocheng/architect-awesome/blob/master/README.md#数据结构)
@@ -191,7 +185,7 @@
 		* [Protobuf](https://github.com/xingshaocheng/architect-awesome/blob/master/README.md#protobuf)
 * [数据库](https://github.com/xingshaocheng/architect-awesome/blob/master/README.md#数据库)
 	* [基础理论](https://github.com/xingshaocheng/architect-awesome/blob/master/README.md#基础理论)
-		* [数据库设计的三大范式](https://github.com/xingshaocheng/architect-awesome/blob/master/README.md#数据库设计的三大范式)
+		* [关系数据库设计的三大范式](https://github.com/xingshaocheng/architect-awesome/blob/master/README.md#关系数据库设计的三大范式)
 	* [MySQL](https://github.com/xingshaocheng/architect-awesome/blob/master/README.md#mysql)
 		* [原理](https://github.com/xingshaocheng/architect-awesome/blob/master/README.md#原理)
 		* [InnoDB](https://github.com/xingshaocheng/architect-awesome/blob/master/README.md#innodb)
@@ -252,6 +246,8 @@
 	* [授权、认证](https://github.com/xingshaocheng/architect-awesome/blob/master/README.md#授权认证)
 		* [RBAC](https://github.com/xingshaocheng/architect-awesome/blob/master/README.md#rbac)
 		* [OAuth2.0](https://github.com/xingshaocheng/architect-awesome/blob/master/README.md#oauth20)
+		* [OIDC](https://github.com/xingshaocheng/architect-awesome/blob/master/README.md#oidc)
+		* [SAML](https://github.com/xingshaocheng/architect-awesome/blob/master/README.md#saml)
 		* [双因素认证（2FA）](https://github.com/xingshaocheng/architect-awesome/blob/master/README.md#双因素认证2fa)
 		* [单点登录(SSO)](https://github.com/xingshaocheng/architect-awesome/blob/master/README.md#单点登录sso)
 * [常用开源框架](https://github.com/xingshaocheng/architect-awesome/blob/master/README.md#常用开源框架)
@@ -426,11 +422,11 @@ MySQL是基于B+树聚集索引组织表
 	* B+树的叶子节点链表结构相比于 B-树便于扫库，和范围检索。
 ### LSM 树
 
-LSM（Log-Structured Merge-Trees）和 B+ 树相比，是牺牲了部分读的性能来换取写的性能(通过批量写入)，实现读写之间的。
+LSM（Log-Structured Merge-Trees）和 B+ 树相比，是牺牲了部分读的性能来换取写的性能(通过批量写入)，实现读写之间的平衡。
 Hbase、LevelDB、Tair（Long DB）、nessDB 采用 LSM 树的结构。LSM可以快速建立索引。
 
 * [《LSM树 VS B+树》](https://blog.csdn.net/dbanote/article/details/8897599)
-	* B+ 树读性能好，但由于需要有序结构，当key比较分散时，磁盘寻道频繁，造成写性能。
+	* B+ 树读性能好，但由于需要有序结构，当key比较分散时，磁盘寻道频繁，造成写性能较差。
 	* LSM 是将一个大树拆分成N棵小树，先写到内存（无寻道问题，性能高），在内存中构建一颗有序小树（有序树），随着小树越来越大，内存的小树会flush到磁盘上。当读时，由于不知道数据在哪棵小树上，因此必须遍历（二分查找）所有的小树，但在每颗小树内部数据是有序的。
 	
 * [《LSM树（Log-Structured Merge Tree）存储引擎》](https://blog.csdn.net/u014774781/article/details/52105708)
@@ -466,8 +462,8 @@ Hbase、LevelDB、Tair（Long DB）、nessDB 采用 LSM 树的结构。LSM可以
 * [《排序算法总结之插入排序》](https://www.cnblogs.com/hapjin/p/5517667.html)
 
 ### 快速排序
-* [《坐在马桶上看算法：快速排序》](http://developer.51cto.com/art/201403/430986.htm)
-	* 一侧比另外一次都大或小。 
+* [《坐在马桶上看算法：快速排序》](https://blog.csdn.net/afjaklsdflka/article/details/52829030)
+	* 一侧比另外一侧都大或小。 
 ### 归并排序
 * [《图解排序算法(四)之归并排序》](http://www.cnblogs.com/chengxiao/p/6194356.html)
 	* 分而治之，分成小份排序，在合并(重建一个新空间进行复制)。 
@@ -576,7 +572,7 @@ KMP：Knuth-Morris-Pratt算法（简称KMP）
 
 ## 多线程
 
-* [《40个Java多线程问题总结》](http://www.importnew.com/18459.html)
+* [《40个Java多线程问题总结》](https://www.cnblogs.com/xrq730/p/5060921.html)
 
 ## 线程安全
 
@@ -658,7 +654,7 @@ KMP：Knuth-Morris-Pratt算法（简称KMP）
 
 ### 乐观锁 & CAS
 
-* [《乐观锁的一种实现方式——CAS》](http://www.importnew.com/20472.html)
+* [《乐观锁的一种实现方式——CAS》](https://blog.csdn.net/u011514810/article/details/76895723/)
 	* 和MySQL乐观锁方式相似，只不过是通过和原值进行比较。	 
 
 ### ABA 问题
@@ -760,7 +756,7 @@ TODO
 * [《设计模式类图与示例》](https://github.com/ToryZhou/design-pattern)
 
 ## 应用场景
-* [《细数JDK里的设计模式》](http://blog.jobbole.com/62314/)
+* [《细数JDK里的设计模式》](https://www.cnblogs.com/winkey4986/p/5148953.html)
 	* 结构型模式：
 		* 适配器：用来把一个接口转化成另一个接口，如 java.util.Arrays#asList()。
 		* 桥接模式：这个模式将抽象和抽象操作的实现进行了解耦，这样使得抽象和实现可以独立地变化，如JDBC；
@@ -772,7 +768,7 @@ TODO
 	* 创建模式:
 		* 抽象工厂模式：抽象工厂模式提供了一个协议来生成一系列的相关或者独立的对象，而不用指定具体对象的类型，如 java.util.Calendar#getInstance()。
 		* 建造模式(Builder)：定义了一个新的类来构建另一个类的实例，以简化复杂对象的创建，如：java.lang.StringBuilder#append()。
-		* 工厂方法：就是 **一个返*** 回具体对象的方法，而不是多个，如 java.lang.Object#toString()、java.lang.Class#newInstance()。
+		* 工厂方法：就是 **一个返回**具体对象的方法，而不是多个，如 java.lang.Object#toString()、java.lang.Class#newInstance()。
 		* 原型模式：使得类的实例能够生成自身的拷贝、如：java.lang.Object#clone()。
 		* 单例模式：全局只有一个实例，如 java.lang.Runtime#getRuntime()。
 	* 行为模式：
@@ -894,7 +890,7 @@ APM —  Application Performance Management
 ## 持续集成(CI/CD)
 
 * [《持续集成是什么？》](http://www.ruanyifeng.com/blog/2015/09/continuous-integration.html)
-* [《8个流行的持续集成工具》](https://www.testwo.com/article/1170)
+* [《8个流行的持续集成工具》](http://www.51testing.com/html/74/n-3723774.html)
 
 ### Jenkins
 
@@ -1372,7 +1368,7 @@ Goolge出品、占用空间和效率完胜其他序列化类库，如Hessian；�
 
 # 数据库
 ## 基础理论
-### 数据库设计的三大范式
+### 关系数据库设计的三大范式
 * [《数据库的三大范式以及五大约束》](https://www.cnblogs.com/waj6511988/p/7027127.html)
 	* 第一范式：数据表中的每一列（每个字段）必须是不可拆分的最小单元，也就是确保每一列的原子性；
 	* 第二范式（2NF）：满足1NF后，要求表中的所有列，都必须依赖于主键，而不能有任何一列与主键没有关系，也就是说一个表只描述一件事情；
@@ -1381,7 +1377,7 @@ Goolge出品、占用空间和效率完胜其他序列化类库，如Hessian；�
 ## MySQL
 
 ### 原理
-* [《MySQL的InnoDB索引原理详解》](http://www.admin10000.com/document/5372.html)
+* [《MySQL的InnoDB索引原理详解》](https://blog.csdn.net/voidccc/article/details/40077329)
 
 * [《MySQL存储引擎－－MyISAM与InnoDB区别》](https://blog.csdn.net/xifeijian/article/details/20316775)
 	* 两种类型最主要的差别就是Innodb 支持事务处理与外键和行级锁
@@ -1400,7 +1396,7 @@ Goolge出品、占用空间和效率完胜其他序列化类库，如Hessian；�
 * [《SQL优化之道》](https://blog.csdn.net/when_less_is_more/article/details/70187459)
 * [《mysql数据库死锁的产生原因及解决办法》](https://www.cnblogs.com/sivkun/p/7518540.html)
 * [《导致索引失效的可能情况》](https://blog.csdn.net/monkey_d_feilong/article/details/52291556)
-* [《 MYSQL分页limit速度太慢优化方法》](https://blog.csdn.net/zy_281870667/article/details/51604540)
+* [《 MYSQL分页limit速度太慢优化方法》](https://www.jianshu.com/p/0a7e3055a01f)
 	* 原则上就是缩小扫描范围。
 
 
@@ -1543,6 +1539,7 @@ MyISAM 是非聚集，InnoDB 是聚集
 
 ## Spark
 * [《Spark(一): 基本架构及原理》](http://www.cnblogs.com/tgzhu/p/5818374.html)
+* [《子雨大数据之Spark入门教程(Python版)》](http://dblab.xmu.edu.cn/blog/1709-2/)
 
 
 # 安全
@@ -1648,6 +1645,9 @@ TODO
 * [《搭建简易堡垒机》](http://blog.51cto.com/zero01/2062618)
 
 ## 授权、认证
+
+* [授权认证知识库](https://docs.authing.cn/authing/)
+
 ### RBAC 
 * [《基于组织角色的权限设计》](https://www.cnblogs.com/zq8024/p/5003050.html)
 * [《权限系统与RBAC模型概述》](https://www.cnblogs.com/shijiaqi1066/p/3793894.html)
@@ -1656,6 +1656,12 @@ TODO
 ### OAuth2.0
 * [《理解OAuth 2.0》](http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html)
 * [《一张图搞定OAuth2.0》](https://www.cnblogs.com/flashsun/p/7424071.html)
+
+### OIDC
+* [理解 OIDC](https://docs.authing.cn/authing/advanced/oidc/li-jie-oidc-liu-cheng)
+
+### SAML
+* [理解 SAML](https://docs.authing.cn/authing/advanced/use-saml/li-jie-saml-liu-cheng)
 
 ### 双因素认证（2FA）
 
@@ -1668,8 +1674,8 @@ TODO
 ### 单点登录(SSO)
 
 * [《单点登录原理与简单实现》](https://www.cnblogs.com/ywlaker/p/6113927.html)
-
 * [CAS单点登录框架](https://github.com/apereo/cas)
+* [使用 Authing 实现单点登录](https://docs.authing.cn/authing/quickstart/implement-sso-with-authing)
 
 # 常用开源框架
 
@@ -1888,7 +1894,7 @@ Java、Spring、Dubbo 优雅关闭方式。
 * [《分布式服务框架学习笔记4 服务路由》](https://blog.csdn.net/xundh/article/details/59492750)
 	* 原则：透明化路由
 	* 负载均衡策略：随机、轮询、服务调用延迟、一致性哈希、粘滞连接
-	* 本地路由有限策略：injvm(优先调用jvm内部的服务)，innative(优先使用相同物理机的服务),原则上找距离最近的服务。
+	* 本地路由优先策略：injvm(优先调用jvm内部的服务)，innative(优先使用相同物理机的服务),原则上找距离最近的服务。
 	* 配置方式：统一注册表；本地配置；动态下发。
 
 ## 分布式一致
@@ -1994,12 +2000,12 @@ Java、Spring、Dubbo 优雅关闭方式。
   * 领域（Doamin）本质上就是问题域，比如一个电商系统，一个论坛系统等。
   * 界限上下文（Bounded Context）：阐述子域之间的关系，可以简单理解成一个子系统或组件模块。
   * 领域模型（Domain Model）：DDD的核心是建立（用通用描述语言、工具—领域通用语言）正确的领域模型；反应业务需求的本质，包括实体和过程；其贯穿软件分析、设计、开发 的整个过程；常用表达领域模型的方式：图、代码或文字；
-  * 领域通用语言：领域专家、开发设计人员都能立即的语言或工具。
+  * 领域通用语言：领域专家、开发设计人员都能理解的语言或工具。
   * 经典分层架构：用户界面/展示层、应用层、领域层、基础设施层，是四层架构模式。
   * 使用的模式：
     * 关联尽量少，尽量单项，尽量降低整体复杂度。
     * 实体（Entity）：领域中的唯一标示，一个实体的属性尽量少，少则清晰。
-    * 值对象（Value Object）：没有唯一标识，且属性值不可变，小二简单的对象，比如Date。
+    * 值对象（Value Object）：没有唯一标识，且属性值不可变，小而简单的对象，比如Date。
     * 领域服务（Domain Service）： 协调多个领域对象，只有方法没有状态(不存数据)；可以分为应用层服务，领域层服务、基础层服务。
     * 聚合及聚合根（Aggregate，Aggregate Root）：聚合定义了一组具有内聚关系的相关对象的集合；聚合根是对聚合引用的唯一元素；当修改一个聚合时，必须在事务级别；大部分领域模型中，有70%的聚合通常只有一个实体，30%只有2~3个实体；如果一个聚合只有一个实体，那么这个实体就是聚合根；如果有多个实体，那么我们可以思考聚合内哪个对象有独立存在的意义并且可以和外部直接进行交互；
     * 工厂（Factory）：类似于设计模式中的工厂模式。
@@ -2206,6 +2212,9 @@ TODO
 
 * [《非法获取公民个人信息罪》](https://baike.baidu.com/item/%E9%9D%9E%E6%B3%95%E8%8E%B7%E5%8F%96%E5%85%AC%E6%B0%91%E4%B8%AA%E4%BA%BA%E4%BF%A1%E6%81%AF%E7%BD%AA)
 
+### 避风港原则
+“避风港”原则是指在发生著作权侵权案件时，当ISP（网络服务提供商）只提供空间服务，并不制作网页内容，如果ISP被告知侵权，则有删除的义务，否则就被视为侵权。如果侵权内容既不在ISP的服务器上存储，又没有被告知哪些内容应该删除，则ISP不承担侵权责任。 后来避风港原则也被应用在搜索引擎、网络存储、在线图书馆等方面。
+* [《避风港原则》](https://baike.baidu.com/item/%E9%81%BF%E9%A3%8E%E6%B8%AF%E5%8E%9F%E5%88%99/588459?fr=aladdin)
 
 # 架构师素质
 
@@ -2273,9 +2282,10 @@ TODO
 * [ITeye](http://www.iteye.com/)
 	* 偏 Java 方向 
 * [博客园](https://www.cnblogs.com)
-* [ChinaUnix](http://www.tom.net/)
+* [ChinaUnix](http://www.chinaunix.net/)
 	* 偏 Linux 方向 
 * [开源中国社区](https://www.oschina.net/)
+* [InfoQ](https://www.infoq.cn/)
 * [深度开源](http://www.open-open.com/)
 * [伯乐在线](http://www.jobbole.com/)
 	* 涵盖 IT职场、Web前端、后端、移动端、数据库等方面内容，偏技术端。
@@ -2363,6 +2373,8 @@ TODO
 
 ### 纸质书
 
+<b style="color:red">更多架构方面书籍参考:</b> [awesome-java-books](https://github.com/sorenduan/awesome-java-books/blob/master/README.md#%E6%9E%B6%E6%9E%84)
+
 #### 开发方面
 
 * 《阿里巴巴Java开发手册》[详情](https://www.coderxing.com/r.php?r=https://union-click.jd.com/jdc?d=BfL5CR)
@@ -2424,7 +2436,8 @@ TODO
 	* Cheat Sheets 大全，单页文档网站。
 * [Tutorialspoint](https://www.tutorialspoint.com/index.htm)
 	* 知名教程网站，提供Java、Python、JS、SQL、大数据等高质量入门教程。
-
+* [LeetCode](https://leetcode.com/problemset/all/)
+	* 知名题库网站，提供Java、Python、C#、C++、算法、SQL、等高质量各程度题库和解决办法。
 
 ## 在线课堂
 
